@@ -1,9 +1,14 @@
+using dotnet_aegis_test.Repository;
 using Rotativa.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IUserRepository>(provider =>
+    new UserRepository(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
 
