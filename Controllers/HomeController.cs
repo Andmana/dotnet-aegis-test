@@ -1,4 +1,5 @@
 using dotnet_aegis_test.Models;
+using dotnet_aegis_test.Repository;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -11,30 +12,27 @@ namespace dotnet_aegis_test.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUserRepository userRepository;
 
-        // Create a list of users
-        List<UserViewModel> users = new List<UserViewModel>()
-            {
-                  new UserViewModel { Id = 1, FullName = "Alice Johnson", Email = "alice@example.com", Role = "Admin" },
-                  new UserViewModel { Id = 2, FullName = "Bob Smith", Email = "bob@example.com", Role = "User" },
-                  new UserViewModel { Id = 3, FullName = "Charlie Brown", Email = "charlie@example.com", Role = "Manager" },
-                  new UserViewModel { Id = 4, FullName = "Diana Prince", Email = "diana@example.com", Role = "Editor" },
-                  new UserViewModel { Id = 5, FullName = "Ethan Hunt", Email = "ethan@example.com", Role = "User" }
-            };
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUserRepository _userRepository)
         {
             
             _logger = logger;
+            userRepository = _userRepository;
         }
+
+        // Create a list of users
 
         public IActionResult Index()
         {
+            List<UserViewModel> users = userRepository.GetAllUsers();
             return View(users);
         }
 
         public IActionResult DownloadPdf()
         {
+            List<UserViewModel> users = userRepository.GetAllUsers();
             ViewData["users"] = users;
 
             return new ViewAsPdf(isPartialView: true, setBaseUrl: true, viewData: ViewData )
@@ -46,15 +44,8 @@ namespace dotnet_aegis_test.Controllers
 
         public IActionResult DownloadExcel()
         {
-            var users = new List<UserViewModel>()
-            {
-                new UserViewModel { Id = 1, FullName = "Alice Johnson", Email = "alice@example.com", Role = "Admin" },
-                new UserViewModel { Id = 2, FullName = "Bob Smith", Email = "bob@example.com", Role = "User" },
-                new UserViewModel { Id = 3, FullName = "Charlie Brown", Email = "charlie@example.com", Role = "Manager" },
-                new UserViewModel { Id = 4, FullName = "Diana Prince", Email = "diana@example.com", Role = "Editor" },
-                new UserViewModel { Id = 5, FullName = "Ethan Hunt", Email = "ethan@example.com", Role = "User" }
-            };
 
+            List<UserViewModel> users = userRepository.GetAllUsers();
             // Create a new Excel package
             using (var package = new ExcelPackage())
             {
