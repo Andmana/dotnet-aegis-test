@@ -15,7 +15,16 @@ namespace dotnet_aegis_test.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var users = new List<UserViewModel>()
+            {
+                  new UserViewModel { Id = 1, FullName = "Alice Johnson", Email = "alice@example.com", Role = "Admin" },
+                  new UserViewModel { Id = 2, FullName = "Bob Smith", Email = "bob@example.com", Role = "User" },
+                  new UserViewModel { Id = 3, FullName = "Charlie Brown", Email = "charlie@example.com", Role = "Manager" },
+                  new UserViewModel { Id = 4, FullName = "Diana Prince", Email = "diana@example.com", Role = "Editor" },
+                  new UserViewModel { Id = 5, FullName = "Ethan Hunt", Email = "ethan@example.com", Role = "User" }
+            };
+
+            return View(users);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
