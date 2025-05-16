@@ -1,9 +1,14 @@
+using Rotativa.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Setup Rotativa (IMPORTANT: call after app is built)
+app.UseRotativa();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

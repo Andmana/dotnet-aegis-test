@@ -1,5 +1,6 @@
 using dotnet_aegis_test.Models;
 using Microsoft.AspNetCore.Mvc;
+using Rotativa.AspNetCore;
 using System.Diagnostics;
 
 namespace dotnet_aegis_test.Controllers
@@ -25,6 +26,12 @@ namespace dotnet_aegis_test.Controllers
             };
 
             return View(users);
+        }
+
+        public IActionResult DownloadPdf()
+        {
+            // Returns the Invoice view as PDF.
+            return new ViewAsPdf();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

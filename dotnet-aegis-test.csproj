@@ -7,4 +7,8 @@
     <RootNamespace>dotnet_aegis_test</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
+  </ItemGroup>
+
 </Project>
