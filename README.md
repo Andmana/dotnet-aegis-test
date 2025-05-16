@@ -9,10 +9,12 @@ This project was developed as part of a technical evaluation for the **Junior .N
 
 ## Features
 
-- Export/download report as **Excel (.xlsx)**
-- Export/download report as **PDF (.pdf)** using **Rotativa**
-- Simple custom formatting for the exported documents
-- Built with clean code structure following best practices
+- Export reports to **Excel (.xlsx)** format
+- Export reports to **PDF (.pdf)** using **Rotativa**
+- Custom simple layout for exported files
+- Data loaded dynamically from **SQL Server** via **Stored Procedure with CTE**
+- Clean architecture using **Repository Pattern** and **ADO.NET**
+- No usage of any ORM (e.g., EF Core)
 
 ---
 
@@ -23,5 +25,9 @@ This project was developed as part of a technical evaluation for the **Junior .N
 - [Rotativa.AspNetCore](https://github.com/webgio/Rotativa.AspNetCore) – for PDF generation
 - [EPPlus](https://github.com/EPPlusSoftware/EPPlus) – for Excel generation
 - Razor Views for PDF formatting
+- Microsoft SQL Server
+- Stored Procedure + CTE
+- ADO.NET (SqlConnection, SqlCommand, SqlDataReader)
+- Repository Pattern Architecture
 
 ---
